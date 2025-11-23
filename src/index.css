@@ -26,7 +26,7 @@ html, body, #root {
   width: 100vw;   
   margin: 0;     
   background-color: rgb(236, 236, 228);
-  overflow: hidden; /* Prevents double scrollbars */
+  overflow-x: hidden; /* Prevents double scrollbars */
 }
 
 @font-face {

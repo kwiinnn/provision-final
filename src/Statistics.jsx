@@ -45,7 +45,7 @@ function Statistics() {
         { date: 'Nov 2025', sales: 4600, revenue: 230000, production: 2200, inventory: 3400 }
     ];
 
-    // Current Data (Nov 2025)
+    // Current Data (Nov 2025) - Adjusted for nice zig-zag visuals
     const nov2025Sales = [
         { week: 'Week 1', val: 1120 }, { week: 'Week 2', val: 1180 }, 
         { week: 'Week 3', val: 1150 }, { week: 'Week 4', val: 1210 }  
@@ -72,11 +72,21 @@ function Statistics() {
     // --- API HELPER ---
     const fetchData = async (prompt, setPred, setInsights, setLoading, setError) => {
         try {
+            // Use environment variable for key if possible, otherwise fallback
+            const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY; 
+            
+            if (!apiKey) {
+                console.error("API Key is missing!");
+                setError("Missing API Key");
+                setLoading(false);
+                return;
+            }
+
             const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer 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`, 
+                    'Authorization': `Bearer ${apiKey}`, 
                 },
                 body: JSON.stringify({
                     model: 'x-ai/grok-4.1-fast',
@@ -84,16 +94,28 @@ function Statistics() {
                     temperature: 0.7
                 })
             });
-            if (!response.ok) throw new Error('API Failed');
+            
+            if (!response.ok) {
+                const errorText = await response.text(); 
+                throw new Error(`API Failed: ${response.status} - ${errorText}`);
+            }
             const data = await response.json();
-            const clean = data.choices[0].message.content.replace(/```json|```/g, '').trim();
+            
+            // Robust JSON parsing
+            let clean = data.choices[0].message.content;
+            const firstBrace = clean.indexOf('{');
+            const lastBrace = clean.lastIndexOf('}');
+            if (firstBrace !== -1 && lastBrace !== -1) {
+                clean = clean.substring(firstBrace, lastBrace + 1);
+            }
+            
             const parsed = JSON.parse(clean);
             setPred(parsed.predictions);
             setInsights(parsed.insights);
             setLoading(false);
         } catch (e) {
-            console.error(e);
-            setError("Failed to load data");
+            console.error("Full Error:", e);
+            setError("Failed to load data"); 
             setLoading(false);
         }
     }
@@ -102,20 +124,20 @@ function Statistics() {
     useEffect(() => {
         // Sales
         const salesPrompt = `You are a sales forecasting expert. Predict weekly SALES (units) for Dec 2025 based on historical data.
-        Instructions: Dec 2025 is "Main Peak". Start ~1250, grow to ~1500 by Week 4.
-        Return JSON: {"predictions": [{"week": "Week 1", "val": <number>}, ...], "insights": "Reasoning..."}`;
+        Instructions: Dec 2025 is "Main Peak". Start ~1250, grow to ~1500 by Week 4 (create a curve).
+        Return JSON ONLY: {"predictions": [{"week": "Week 1", "val": 1250}, ...], "insights": "Reasoning..."}`;
         fetchData(salesPrompt, setSalesPredictions, setSalesInsights, setSalesLoading, setSalesError);
 
         // Revenue
         const revPrompt = `You are a revenue forecasting expert. Predict weekly REVENUE (currency) for Dec 2025.
         Instructions: Dec 2025 is "Main Peak". Start ~62000, grow to ~75000 by Week 4.
-        Return JSON: {"predictions": [{"week": "Week 1", "val": <number>}, ...], "insights": "Reasoning..."}`;
+        Return JSON ONLY: {"predictions": [{"week": "Week 1", "val": 62000}, ...], "insights": "Reasoning..."}`;
         fetchData(revPrompt, setRevPredictions, setRevInsights, setRevLoading, setRevError);
 
         // Inventory
         const invPrompt = `You are an inventory forecasting expert. Predict weekly INVENTORY (units) for Dec 2025.
         Instructions: High Sales means Inventory drops fast. Start ~3200, drop to ~1000 by Week 4.
-        Return JSON: {"predictions": [{"week": "Week 1", "val": <number>}, ...], "insights": "Reasoning..."}`;
+        Return JSON ONLY: {"predictions": [{"week": "Week 1", "val": 3200}, ...], "insights": "Reasoning..."}`;
         fetchData(invPrompt, setInvPredictions, setInvInsights, setInvLoading, setInvError);
 
         // Production
@@ -123,7 +145,7 @@ function Statistics() {
         Historical: ${JSON.stringify(historicalData)}
         Context: Dec 2025 is Main Peak. Production must ramp up to meet demand.
         Instructions: Start ~600 in Week 1, ramping up to ~850 by Week 4.
-        Return JSON: {"predictions": [{"week": "Week 1", "val": <number>}, ...], "insights": "Reasoning..."}`;
+        Return JSON ONLY: {"predictions": [{"week": "Week 1", "val": 600}, ...], "insights": "Reasoning..."}`;
         fetchData(prodPrompt, setProdPredictions, setProdInsights, setProdLoading, setProdError);
 
     }, []);
@@ -133,7 +155,7 @@ function Statistics() {
         return currentData.map((item, index) => ({
             name: item.week,
             current: item.val,
-            predicted: predictions[index] ? predictions[index].val : null
+            predicted: predictions && predictions[index] ? predictions[index].val : null
         }));
     };
 
