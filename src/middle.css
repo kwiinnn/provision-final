@@ -1,0 +1,459 @@
+.middle {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 17px;
+}
+
+.top-part {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mid-left {
+    padding-top: 16px;
+    padding-left: 20px;
+}
+
+.mid-right {
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.company {
+    margin-right: 10px;
+}
+.companyName {
+    color: #0C342C;
+    text-align: right;
+    font-family: Poppins;
+    font-size: 20px;
+    line-height: 95.463%;
+}
+
+.profile {
+    color: #787878;
+    text-align: right;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 95.463%;
+}
+
+.profile-pic {
+    width: 60px;
+}
+
+.greet, .name {
+    color: #787878;
+    font-family: 'PoppinsMedium';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.dashboard-text {
+    color: #0C342C;
+    font-family: 'PoppinsBold';
+    font-size: 45px;
+    font-style: bold;
+    font-weight: 500;
+    line-height: 94.463%; 
+}
+
+.infos {
+    display: flex;
+    margin-top: 15px;
+    height: 300px;
+    padding-right: 15px;
+}
+
+.inventory {
+    flex: 2;
+    background-color: rgb(253, 253, 245);
+    margin-right: 20px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.suppliers {
+    background-color: lightyellow;
+    flex: 1;
+    border-radius: 15px;
+    background-color: rgb(253, 253, 245);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+}
+
+.inventory-text {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.suppliers-text {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.inven, .supply {
+    color: #0C342C;
+    font-family: 'PoppinsBold';
+    font-size: 25px;
+    line-height: 95.463%; /* 23.866px */
+}
+
+.view-all1, .view-all2 {
+    color: #787878;
+    text-align: right;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-style:italic;
+    font-weight: 400;
+    line-height: 95.463%; /* 19.093px */
+}
+
+.invenRow1, .invenRow2 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.totalItems, .totalValue, .lowStock, .categories {
+    border: 1px solid #979797;
+    height: 90px;
+    border-radius: 15px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-left: 3px;
+}
+
+.totalItems {
+    margin: 20px 10px 10px 20px;
+}
+
+.box-icon {
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+
+.totalValue {
+    margin: 20px 20px 10px 10px;
+}
+
+.lowStock {
+    margin: 10px 10px 10px 20px;
+}
+
+.categories {
+    margin: 10px 20px 10px 10px;
+}
+
+.totalItems-text, .totalValue-text, .lowStock-text, .categories-text {
+    color: #06231D;
+    font-family: 'PoppinsSemibold';
+    font-size: 15px;
+    font-style: normal;
+    line-height: 95.463%; /* 14.319px */
+    margin-left: 10px;
+    margin-bottom: 10px; 
+    margin-top: -5px; 
+}
+
+.totalItems-num, .totalValue-num, .lowStock-num, .categories-num {
+    color: #076653;
+    margin-left: 10px;
+    font-family: 'PoppinsBold';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 95.463%; /* 19.093px */
+    margin-bottom: 5px;
+}
+
+.lowStock-num {
+    color: #CF2503;
+}
+
+.across, .current-inven-value, .stocks-status, .product-categories {
+    color: #787878;
+    font-family: Poppins;
+    font-size: 15px;
+    margin-left: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 95.463%; /* 11.456px */
+}
+
+
+
+
+/* 2. The Scrollable Area */
+.supplier-list-container {
+    flex: 1;         /* Fills remaining space under the header */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 0 15px 15px 15px; /* Breathing room */
+    
+}
+
+/* Custom Scrollbar (Optional - makes it look cleaner) */
+.supplier-list-container::-webkit-scrollbar {
+    width: 5px;
+}
+.supplier-list-container::-webkit-scrollbar-thumb {
+    background: #ccc; 
+    border-radius: 5px;
+}
+
+/* 3. The Individual Card */
+.supplier-card {
+    background-color: #FFFFFF;
+    border: 1px solid #979797;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px; /* Space between cards */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* 4. Card Content Styling */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.supp-name {
+    font-family: 'PoppinsBold';
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+}
+
+.item-name {
+    color: #076653; /* That specific dark green */
+    font-family: 'PoppinsBold';
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 100%;
+}
+
+.item-details {
+    color: #787878;
+    font-family: 'Poppins';
+    font-size: 13px;
+    line-height: 120%;
+}
+
+/* 5. Status Pills (The colored tags) */
+.status-pill {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'PoppinsBold';
+    font-size: 10px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.status-pill.green {
+    background-color: #1E5E52; /* Dark Green */
+}
+
+.status-pill.orange {
+    background-color: #EBB744; /* Yellow/Orange */
+}
+
+.status-pill.gray {
+    background-color: #999;
+}
+
+/*--Sales and Forecast---*/
+
+.sales-and-forecast {
+    display: flex;
+    height: 300px;
+}
+
+.sales {
+    background-color: #E3EF26;
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 20px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* --- SALES SECTION STYLING --- */
+
+.sales {
+    background-color: #E3EF26; /* Your Lime Green */
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 20px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+    
+    /* Important for scrolling & layout */
+    display: flex;
+    flex-direction: column;
+    padding: 0; 
+    overflow: hidden;
+}
+
+.sales-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centers text vertically */
+    padding: 15px 20px;  /* Space around the title */
+}
+
+.sales-title {
+    color: #0C342C;
+    font-family: 'PoppinsBold';
+    font-size: 32px; /* Large title */
+    font-weight: 800;
+    line-height: 100%;
+}
+
+.view-all-sales {
+    color: #0C342C; /* Dark green text */
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: italic;
+    cursor: pointer;
+}
+
+/* --- THE SCROLLABLE LIST --- */
+.sales-list-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 15px 15px 15px; /* Padding inside for the cards */
+}
+
+/* Custom Scrollbar for Sales (optional) */
+.sales-list-container::-webkit-scrollbar {
+    width: 5px;
+}
+.sales-list-container::-webkit-scrollbar-thumb {
+    background: rgba(12, 52, 44, 0.2); /* Semi-transparent dark green */
+    border-radius: 5px;
+}
+
+/* --- INDIVIDUAL SALES CARD --- */
+.sales-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between; /* Pushes text left, arrow right */
+    align-items: center;
+}
+
+.sales-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.sales-item-name {
+    color: #1E5E52; /* Dark Green */
+    font-family: 'PoppinsBold';
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 100%;
+    margin-bottom: 2px;
+}
+
+.sales-count {
+    color: #000;
+    font-family: 'Poppins'; /* Regular font for count */
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* --- ARROW ICON --- */
+.arrow-img {
+    width: 35px; /* Adjust based on your actual image size */
+    height: auto;
+}
+
+/* Trick: If the trend is 'down', rotate the image 90 degrees (or 180 depending on your image) */
+.arrow-img.flipped {
+    transform: rotate(180deg); 
+}
+
+
+
+.forecast {
+    background-color: rgb(253, 253, 245);
+    flex: 2.3;
+    margin-top: 15px;
+    margin-right: 15px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+}
+
+/* --- FORECAST SECTION --- */
+
+.forecast {
+    background-color: #0C342C; /* The Deep Dark Green */
+    flex: 2.3;
+    margin-top: 15px;
+    margin-right: 15px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 25px; /* Slightly rounder corners like the image */
+    
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+}
+
+.forecast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.forecast-title {
+    color: #E3EF26; /* The Lime Green Title */
+    font-family: 'PoppinsBold';
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.view-all-forecast {
+    color: #FFFFFF;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: italic;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* This div holds the Recharts component */
+.chart-container {
+    flex: 1; /* Fill the rest of the card */
+    width: 100%;
+    min-height: 0; /* Prevents flexbox overflow issues */
+    margin-bottom: 10px;
+}
+

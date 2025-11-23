@@ -1,0 +1,275 @@
+/* index.css */
+
+/* --- FIXED: Global Box Sizing to prevent horizontal scroll --- */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  /* --- FIXED: Locked height to screen size so internal scrolling works --- */
+  height: 100vh;  
+  width: 100vw;   
+  margin: 0;     
+  background-color: rgb(236, 236, 228);
+  overflow: hidden; /* Prevents double scrollbars */
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('src/assets/Poppins-regular.ttf');
+}
+@font-face {
+  font-family: 'PoppinsBold';
+  src: url('src/assets/Poppins-Bold.ttf');
+}
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url('src/assets/Poppins-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'PoppinsMedium';
+  src: url('src/assets/Poppins-Medium.ttf');
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+p {
+  margin: 0;
+}
+
+.greet, .name {
+  display: inline-block;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* --- SIDEBAR STYLING --- */
+.bigdiv {
+  display: flex;
+  height: 100vh; /* Ensure main container fills screen */
+  width: 100vw;
+} 
+
+.sidebar{
+  position: fixed;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  background-color:#0C342C;
+  border-radius: 24px;
+  top: 15px;
+  bottom: 15px;
+  left: 20px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+  z-index: 10; /* Ensure sidebar is on top */
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.logo img{
+  padding-top: 10px;
+  width: 100px;
+}
+
+.notifs {
+  position: relative;
+  border-radius: 16px;
+  border: 3px white solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+}
+.notifs img{
+  height: 30px;
+  padding: 5px;
+}
+
+.number {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  background-color: #076653;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  font-size: 13px;
+  font-family: 'PoppinsSemiBold';
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home, .messages, .orders, .stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.home img, .messages img, .orders img, .stats img {
+  height: 40px;
+}
+
+.text, .messages p, .orders p, .stats p, .exit p {
+  color: white;
+  font-family: 'PoppinsMedium';
+  margin: 0;
+}
+
+.exit {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+  margin-bottom: 20px;
+  border-top: 1px solid white;
+  padding-top: 5px;
+  bottom: 0;
+}
+.exit img {
+  height: 40px;
+}
+
+/* --- GLOBAL FIX FOR PURPLE SEARCH ICONS --- */
+/* This targets the default webkit search decoration that causes the purple magnifying glass */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* COPY AND PASTE THIS INTO src/index.css */
+
+/* 1. The Common Style for Sidebar Links */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Removes the default underline */
+    
+    /* Sizing */
+    width: 85%;       
+    height: 80px;     
+    margin-bottom: 10px;
+    
+    /* Pushes the item to the right edge */
+    margin-left: auto; 
+    
+    /* Pushes content back to visual center */
+    padding-right: 15px; 
+    box-sizing: border-box;
+
+    /* Transitions */
+    transition: all 0.3s ease;
+    border-radius: 30px 0 0 30px;
+}
+
+/* 2. Fix the Text Color (Overrides the global blue link color) */
+.nav-item p {
+    font-family: 'PoppinsMedium';
+    font-size: 14px;
+    margin: 0;
+    margin-top: 5px;
+    color: white !important; /* !important forces it to override the blue link color */
+}
+
+/* 3. Fix Icon Sizing */
+.nav-item img {
+    height: 30px;
+    transition: all 0.3s ease;
+}
+
+/* --- ACTIVE STATE (When you are on that page) --- */
+.nav-item.active {
+    background-color: rgb(236, 236, 228); /* The white background */
+    width: 90%; /* Expands slightly */
+}
+
+/* Active Text turns Dark Green */
+.nav-item.active p {
+    color: #0C342C !important;
+    font-weight: bold;
+}
+
+/* Active Icon turns Dark Green */
+.nav-item.active img {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(35%) saturate(966%) hue-rotate(124deg) brightness(93%) contrast(93%);
+}

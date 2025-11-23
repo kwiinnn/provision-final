@@ -1,0 +1,16 @@
+/* content.css */
+.content {
+    /* --- FIXED: Use flex:1 to take up remaining space next to sidebar --- */
+    flex: 1;
+    
+    /* --- FIXED: Removed 'margin-left: 180px' and used proper layout --- */
+    margin-left: 180px; /* Space for the fixed sidebar */
+    
+    display: flex;
+    flex-direction: row;
+    
+    /* --- FIXED: Height 100% ensures it fits the screen exactly --- */
+    height: 100%; 
+    
+    /* Prevents whole-page scrolling */
+}

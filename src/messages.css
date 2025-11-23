@@ -1,0 +1,291 @@
+/* Overlay: The blurred background */
+.messages-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly dim */
+    
+    z-index: 1000; /* Sit on top of everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 15px;
+    border: 0.5px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.20), 0 2px 4px 0 rgba(255, 255, 255, 0.40) inset;
+    
+}
+
+/* The Modal Box */
+.messages-modal {
+    width: 90%;
+    max-width: 1000px;
+    height: 85vh;
+    background-color: rgba(230, 232, 230, 0.85); /* Semi-transparent whitish/grey */
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* --- LEFT SIDEBAR --- */
+.msg-sidebar {
+    width: 35%;
+    background-color: transparent;
+    padding: 20px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.msg-title {
+    font-family: 'PoppinsBold';
+    font-size: 32px;
+    color: #0C342C;
+    margin: 0 0 20px 0;
+}
+
+.msg-search {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-icon {
+    margin-right: 10px;
+    opacity: 0.5;
+}
+
+.msg-search input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
+/* Contact List */
+.contact-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-bottom: 5px;
+}
+
+.contact-item:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* The active "yellowish" highlight from design */
+.contact-item.active {
+    background-color: rgba(227, 239, 38, 0.2); /* Faint yellow/lime */
+    border-left: 4px solid #E3EF26;
+}
+
+.contact-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    margin-right: 15px;
+    object-fit: contain;
+    background: #0C342C;
+    padding: 5px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact-name {
+    font-family: 'PoppinsBold';
+    font-size: 14px;
+    color: #000;
+}
+
+.contact-role {
+    font-family: 'Poppins';
+    font-size: 12px;
+    color: #666;
+    margin: 2px 0;
+}
+
+.contact-time {
+    font-family: 'Poppins';
+    font-size: 10px;
+    color: #999;
+}
+
+.favorite-star {
+    color: #4A90E2; /* Blue star */
+    font-size: 18px;
+}
+
+/* --- RIGHT CHAT AREA --- */
+.msg-chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly lighter right side */
+    position: relative;
+}
+
+/* Chat Header */
+.chat-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #0C342C;
+    padding: 5px;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+.header-name {
+    font-family: 'PoppinsSemiBold';
+    font-size: 14px;
+    color: #333;
+}
+
+.chat-header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* Chat Messages Body */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+}
+
+.message.received {
+    align-self: flex-start;
+}
+
+.message.sent {
+    align-self: flex-end;
+}
+
+.msg-bubble {
+    background-color: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border-bottom-left-radius: 2px;
+    font-family: 'Poppins';
+    font-size: 13px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    line-height: 1.5;
+}
+
+.sent-bubble {
+    background-color: #4A66E8; /* The Blue color */
+    color: white;
+    border-radius: 12px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 12px;
+}
+
+.large-bubble {
+    min-width: 400px; /* Force width for list */
+}
+
+.msg-time {
+    font-size: 10px;
+    color: #999;
+    margin-top: 5px;
+    font-family: 'Poppins';
+}
+
+.see-more {
+    color: #0C342C;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Input Area */
+.chat-input-area {
+    padding: 15px 20px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.emoji-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-family: 'Poppins';
+    font-size: 13px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
