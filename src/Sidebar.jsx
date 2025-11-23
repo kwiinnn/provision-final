@@ -1,11 +1,18 @@
 import { NavLink, useLocation } from 'react-router-dom'; 
 import './index.css';
 
+// ✅ IMPORT IMAGES HERE
+import logoImg from './assets/provisionlogo.png';
+import bellImg from './assets/bell.png';
+import homeImg from './assets/home.png';
+import msgImg from './assets/speechbubble.png';
+import ordersImg from './assets/orders.png';
+import statsImg from './assets/Bar Chart.svg';
+import exitImg from './assets/exit.png';
+
 function Sidebar() {
     const location = useLocation();
     
-    // Helper to check active state
-    // We check if the current path matches the link's destination
     const checkActive = (path) => {
         return location.pathname === path ? "nav-item active" : "nav-item";
     };
@@ -13,41 +20,41 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="logo">
-                <img src="src/assets/provisionlogo.png" alt="logo"/>
+                {/* Use the imported variable, NOT the string string */}
+                <img src={logoImg} alt="logo"/>
             </div>
             
             <div className="notifs">
                 <div className="number"><p>3</p></div>
-                <img src="src/assets/bell.png" className="bell" alt="notifications"/>
+                <img src={bellImg} className="bell" alt="notifications"/>
             </div>
 
             <NavLink to="/" className={checkActive("/")}>
-                <img src="src/assets/home.png" alt="home" />
+                <img src={homeImg} alt="home" />
                 <p>Home</p>
             </NavLink>
 
-            {/* Messages Link with Background State */}
             <NavLink 
                 to="/messages" 
                 className={checkActive("/messages")}
                 state={{ background: location }} 
             >
-                <img src="src/assets/speechbubble.png" alt="messages" />
+                <img src={msgImg} alt="messages" />
                 <p>Messages</p>
             </NavLink>
 
             <NavLink to="/orders" className={checkActive("/orders")}>
-                <img src="src/assets/orders.png" alt="orders" />
+                <img src={ordersImg} alt="orders" />
                 <p>Orders</p>
             </NavLink>
 
             <NavLink to="/statistics" className={checkActive("/statistics")}>
-                <img src="src/assets/Bar Chart.svg" alt="stats" />
+                <img src={statsImg} alt="stats" />
                 <p>Statistics</p>
             </NavLink>
 
             <div className="exit">
-                <img src="src/assets/exit.png" alt="exit" />
+                <img src={exitImg} alt="exit" />
             </div>
         </div>
     );
